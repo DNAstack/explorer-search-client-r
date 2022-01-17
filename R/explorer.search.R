@@ -1,7 +1,8 @@
-#' List available tables from a given GA4GH search API endpoint.
+#' List available tables from a given Explorer collection
 #'
-#' @param url The base URL of the GA4GH Search API Implementation.
-#' @return A data frame with the table name and data model, or reference to data model.
+#' @param url The base URL of the Explorer instance to use.  (e.g. https://viral.ai)
+#' @param collectionslug The "slug name" identifier for the collection.
+#' @return A data frame with the table names and data model, or reference to data model.  The 'qualifeid_table_name' can be used to issue search queries via the 'explorer_search' function
 #' @export
 explorer_list_tables <- function(url, collectionslug){
   r <- httr::GET(paste(url,"/api/collections/",collectionslug,"/data-connect/tables", sep=""), httr::content_type("application/json"));
@@ -9,10 +10,11 @@ explorer_list_tables <- function(url, collectionslug){
   return(json);
 }
 
-#' Execute a search against a GA4GH Search API implementation located at the given URL.
+#' Execute a search against a DNAstack Explorer instance located at the given URL.
 #'
-#' @param url The base URL of the GA4GH Search API Implementation.
-#' @param query The SQL query to execute
+#' @param url The base URL of the Explorer instance to use (e.g. https://viral.ai)
+#' @param collectionslug The "slug name" identifier for the collection
+#' @param query The SQL query to execute.  Queries can be executed against tables returned by the 'explorer_list_tables' function.
 #' @return A data frame with ALL search results where columns correspond to the top level of search properties returned by the API.
 #' @export
 explorer_search <- function(url, collectionslug, query){

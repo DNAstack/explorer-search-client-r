@@ -2,18 +2,20 @@
 % Please edit documentation in R/explorer.search.R
 \name{explorer_search}
 \alias{explorer_search}
-\title{Execute a search against a GA4GH Search API implementation located at the given URL.}
+\title{Execute a search against a DNAstack Explorer instance located at the given URL.}
 \usage{
-explorer_search(url, query)
+explorer_search(url, collectionslug, query)
 }
 \arguments{
-\item{url}{The base URL of the GA4GH Search API Implementation.}
+\item{url}{The base URL of the Explorer instance to use (e.g. https://viral.ai)}
 
-\item{query}{The SQL query to execute}
+\item{collectionslug}{The "slug name" identifier for the collection}
+
+\item{query}{The SQL query to execute.  Queries can be executed against tables returned by the 'explorer_list_tables' function.}
 }
 \value{
 A data frame with ALL search results where columns correspond to the top level of search properties returned by the API.
 }
 \description{
-Execute a search against a GA4GH Search API implementation located at the given URL.
+Execute a search against a DNAstack Explorer instance located at the given URL.
 }

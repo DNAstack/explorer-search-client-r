@@ -2,16 +2,18 @@
 % Please edit documentation in R/explorer.search.R
 \name{explorer_list_tables}
 \alias{explorer_list_tables}
-\title{List available tables from a given GA4GH search API endpoint.}
+\title{List available tables from a given Explorer collection}
 \usage{
-explorer_list_tables(url)
+explorer_list_tables(url, collectionslug)
 }
 \arguments{
-\item{url}{The base URL of the GA4GH Search API Implementation.}
+\item{url}{The base URL of the Explorer instance to use.  (e.g. https://viral.ai)}
+
+\item{collectionslug}{The "slug name" identifier for the collection.}
 }
 \value{
-A data frame with the table name and data model, or reference to data model.
+A data frame with the table names and data model, or reference to data model.  The 'qualifeid_table_name' can be used to issue search queries via the 'explorer_search' function
 }
 \description{
-List available tables from a given GA4GH search API endpoint.
+List available tables from a given Explorer collection
 }

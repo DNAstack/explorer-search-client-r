@@ -15,5 +15,8 @@ install.packages("devtools")
 devtools::install_github("DNAstack/explorer-search-client-r")
 ```
 
-Type `??explorer.search` for help.  
+# Vignette
+`vignette('searching', package='explorer.search')`
 
+
+Type `??explorer.search` for help.  
