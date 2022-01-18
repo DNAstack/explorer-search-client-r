@@ -1,5 +1,6 @@
 ---
 title: "Searching with DNAstack Explorer"
+author: "DNAstack"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Searching with DNAstack Explorer}
@@ -16,7 +17,7 @@ knitr::opts_chunk$set(
 This package is used to perform operations against the DNAstack Explorer search API, and receive responses in R data frames.
 
 ## Usage:
-```
+```{R eval=FALSE, include=TRUE}
 library(explorer.search)
 # URL to a DNAstack Explorer instance
 baseurl <- "https://viral.ai"
@@ -25,7 +26,7 @@ baseurl <- "https://viral.ai"
 tables <- explorer_list_tables(baseurl, 'virusseq')
 
 # Execute a query against the 'virusseq' collection with a tablename retrieved previously, get the results as a dataframe.
-df <- explorer_search(baseurl, paste("SELECT * FROM ", tables$qualified_table_name[1], " LIMIT 50"))
+df <- explorer_search(baseurl, 'virusseq', paste("SELECT * FROM ", tables$qualified_table_name[1], " LIMIT 50"))
 
 ```
 

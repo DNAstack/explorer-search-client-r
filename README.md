@@ -12,11 +12,13 @@ These instructions install the library from github, and require that libgit2 be 
 To use, start up R and type:
 ```
 install.packages("devtools")
-devtools::install_github("DNAstack/explorer-search-client-r")
+install.packages("rmarkdown")
+devtools::install_github("DNAstack/explorer-search-client-r", build_vignettes=TRUE)
+library('explorer.search')
 ```
 
 # Vignette
 `vignette('searching', package='explorer.search')`
 
 
-Type `??explorer.search` for help.  
+Type `help(package="explorer.search")` for help.  

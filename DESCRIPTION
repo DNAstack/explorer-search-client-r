@@ -7,7 +7,7 @@ Authors@R:
            role = c("aut", "cre"),
            email = "info@dnastack.com")
 Description: A client for DNAstack Explorer "data-connect" (search) API.  Enables executing SQL searches against this API and retrieving the results in an R data frame.
-License: Apache License 2.0
+License: Apache License (== 2.0)
 URL: https://github.com/DNAstack/explorer-search-r-client
 Encoding: UTF-8
 LazyData: true

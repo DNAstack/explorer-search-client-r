@@ -1,12 +1,13 @@
 #' List available tables from a given Explorer collection
 #'
+#'
 #' @param url The base URL of the Explorer instance to use.  (e.g. https://viral.ai)
 #' @param collectionslug The "slug name" identifier for the collection.
 #' @return A data frame with the table names and data model, or reference to data model.  The 'qualifeid_table_name' can be used to issue search queries via the 'explorer_search' function
 #' @export
 explorer_list_tables <- function(url, collectionslug){
   r <- httr::GET(paste(url,"/api/collections/",collectionslug,"/data-connect/tables", sep=""), httr::content_type("application/json"));
-  json <- jsonlite::fromJSON(httr::content(r, "text"));
+  json <- jsonlite::fromJSON(httr::content(r, "text", encoding="UTF-8"));
   return(json);
 }
 
@@ -19,7 +20,7 @@ explorer_list_tables <- function(url, collectionslug){
 #' @export
 explorer_search <- function(url, collectionslug, query){
   r <- httr::POST(paste(url,"/api/collections/",collectionslug,"/data-connect/search", sep=""), "body"=paste("{\"query\":\"", query, "\"}", sep=""), httr::content_type("application/json"));
-  json <- jsonlite::fromJSON(httr::content(r, "text"));
+  json <- jsonlite::fromJSON(httr::content(r, "text", encoding="UTF-8"));
 
   df <- data.frame()
   while(!is.null(json$pagination$next_page_url)){
@@ -28,7 +29,7 @@ explorer_search <- function(url, collectionslug, query){
       df<-rbind(df, json$data)
     }
     r <- httr::GET(json$pagination$next_page_url, httr::content_type("application/json"));
-    json <- jsonlite::fromJSON(httr::content(r, "text"));
+    json <- jsonlite::fromJSON(httr::content(r, "text", encoding="UTF-8"));
   }
 
   if(is.list(json$data) && length(json$data)>0){
