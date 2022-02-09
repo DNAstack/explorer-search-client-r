@@ -19,7 +19,8 @@ explorer_list_tables <- function(url, collectionslug){
 #' @return A data frame with ALL search results where columns correspond to the top level of search properties returned by the API.
 #' @export
 explorer_search <- function(url, collectionslug, query){
-  r <- httr::POST(paste(url,"/api/collections/",collectionslug,"/data-connect/search", sep=""), "body"=paste("{\"query\":\"", query, "\"}", sep=""), httr::content_type("application/json"));
+  body <- list(query=query)
+  r <- httr::POST(paste(url,"/api/collections/",collectionslug,"/data-connect/search", sep=""), "body"=body, encode="json", httr::content_type("application/json"));
   json <- jsonlite::fromJSON(httr::content(r, "text", encoding="UTF-8"));
 
   df <- data.frame()
